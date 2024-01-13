@@ -59,7 +59,7 @@ export function Profile({ navigation }) {
                         </View>
                         <View style={styles.rowParent}>
                             <Pressable style={[commonStyles.buttonStyle, styles.removeButtonStyle]}>
-                                <Text style={{ color: 'lightslategrey' }}>Remove</Text>
+                                <Text style={{ color: '#495e57' }}>Remove</Text>
                             </Pressable>
                         </View>
                     </View>
@@ -91,19 +91,19 @@ export function Profile({ navigation }) {
                 <View style={{ marginBottom: 8 }}>
                     <Text style={{ fontSize: 16, marginBottom: 10 }}>Email Notifications</Text>
                     <View style={[commonStyles.row, styles.checkBoxWrapper]}>
-                        <Checkbox value={isOrderStatusChecked} onChange={setOrderStatus} style={commonStyles.checkbox} color={isOrderStatusChecked ? 'lightslategrey' : undefined} />
+                        <Checkbox value={isOrderStatusChecked} onChange={setOrderStatus} style={commonStyles.checkbox} color={isOrderStatusChecked ? '#495e57' : undefined} />
                         <Text>Order Status</Text>
                     </View>
                     <View style={[commonStyles.row, styles.checkBoxWrapper]}>
-                        <Checkbox value={isPasswordChange} onChange={setPasswordChange} style={commonStyles.checkbox} color={isPasswordChange ? 'lightslategrey' : undefined} />
+                        <Checkbox value={isPasswordChange} onChange={setPasswordChange} style={commonStyles.checkbox} color={isPasswordChange ? '#495e57' : undefined} />
                         <Text>Password Changes</Text>
                     </View>
                     <View style={[commonStyles.row, styles.checkBoxWrapper]}>
-                        <Checkbox value={isSpecialOffer} onChange={setSpecialOrder} style={commonStyles.checkbox} color={isSpecialOffer ? 'lightslategrey' : undefined} />
+                        <Checkbox value={isSpecialOffer} onChange={setSpecialOrder} style={commonStyles.checkbox} color={isSpecialOffer ? '#495e57' : undefined} />
                         <Text>Special Offers</Text>
                     </View>
                     <View style={[commonStyles.row, styles.checkBoxWrapper]}>
-                        <Checkbox value={isNewsLetter} onChange={setNewLetters} style={commonStyles.checkbox} color={isNewsLetter ? 'lightslategrey' : undefined} />
+                        <Checkbox value={isNewsLetter} onChange={setNewLetters} style={commonStyles.checkbox} color={isNewsLetter ? '#495e57' : undefined} />
                         <Text>Newletter</Text>
                     </View>
                 </View>
@@ -115,7 +115,7 @@ export function Profile({ navigation }) {
                 </Pressable>
                 <View style={[commonStyles.row, { marginVertical: 15, flex: 1, justifyContent: 'space-between', marginHorizontal: 10 }]}>
                     <Pressable style={[commonStyles.buttonStyle, styles.removeButtonStyle, { width: '45%', justifyContent: 'center', alignItems: 'center' }]}>
-                        <Text style={{ color: 'lightslategrey' }}>Discard Changes</Text>
+                        <Text style={{ color: '#495e57' }}>Discard Changes</Text>
                     </Pressable>
                     <Pressable style={[commonStyles.buttonStyle, styles.changeButtonStyle, { width: '45%', justifyContent: 'center', alignItems: 'center' }]}>
                         <Text style={{ color: 'white' }}>Save Changes</Text>
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'yellow',
         alignItems: 'center',
         borderWidth: 1,
-        borderColor: 'darkgreen',
+        borderColor: '#495e57',
     },
     inputBoxStyle: {
         width: '100%'
@@ -142,11 +142,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     changeButtonStyle: {
-        backgroundColor: 'lightslategrey',
+        backgroundColor: '#495e57',
     },
     removeButtonStyle: {
         borderWidth: 1,
-        borderColor: 'darkgreen',
+        borderColor: '#495e57',
         backgroundColor: 'white'
     },
     checkBoxWrapper: {

@@ -10,17 +10,17 @@ export const commonStyles = StyleSheet.create({
         marginHorizontal: 10,
         marginVertical: 7,
         borderWidth: 1,
-        borderColor: 'darkgreen',
+        borderColor: '#495e57',
         padding: 10,
         fontSize: 16,
         borderRadius: 5,
         backgroundColor: '#EDEFEE',
     },
-    inputLabel:{
-        fontSize:13,
+    inputLabel: {
+        fontSize: 13,
     },
-    inputLabelWrapper:{
-        width:'100%',
+    inputLabelWrapper: {
+        width: '100%',
     },
     inputParent: {
         width: '100%',
@@ -49,6 +49,23 @@ export const commonStyles = StyleSheet.create({
     },
     checkbox: {
         marginRight: 10,
-        color: 'lightslategrey'
-      },
+        color: '#495e57'
+    },
+    circleBorder:{
+        padding:10,
+        height:50,
+        width:50,
+        borderRadius:50/2,
+        justifyContent:'center',
+        alignContent:'center',
+        alignItems:'center'
+    },
+    secondaryColor:{
+        color:"#f1cf12"
+    },
+    horizontalLine:{
+        borderWidth: 0.5,
+        borderColor:'grey',
+        marginVertical:15,
+    }
 });

@@ -87,7 +87,7 @@ const OnboardingStyles = StyleSheet.create({
     },
     nextBtn: {
         marginHorizontal: 20,
-        backgroundColor: 'lightslategrey',
+        backgroundColor: '#495e57',
     },
     btnText: {
         color: 'white'
