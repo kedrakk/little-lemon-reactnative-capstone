@@ -17,6 +17,15 @@ export const getData = async (key) => {
     }
 };
 
+export const clearAllForLogout = async () => {
+    try {
+        const value = await AsyncStorage.multiRemove(["loggedInUser", "userToken"]);
+        return value;
+    } catch (e) {
+        throw e;
+    }
+};
+
 export const delay = ms => new Promise(res => setTimeout(res, ms));
 
 export const tokenGenerator = (lenth) => {

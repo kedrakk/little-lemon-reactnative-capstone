@@ -1,6 +1,6 @@
-const isLoggedInKey = "isLoggedIn";
+
 const loggedInUserKey = "loggedInUser";
-const loggedInToken = "loggedInToken";
+const loggedInToken = "userToken";
 
 const restoreScreenState = "RESTORE_SCREEN";
 const signInState = "SIGN_IN";

@@ -1,10 +1,9 @@
-import { Button, StyleSheet } from 'react-native';
 import Onboarding from './screens/Onboarding';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Home } from './screens/Home';
 import { Profile } from './screens/Profile';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { delay, getData, storeData, tokenGenerator } from './helper/storage_helper';
 import Splash from './screens/Splash';
 
@@ -49,7 +48,7 @@ export default function App() {
       let userToken;
 
       try {
-        await delay(3000);
+        await delay(1500);
         userToken = await getData('userToken');
       } catch (e) {
         console.log(e);
@@ -74,16 +73,20 @@ export default function App() {
     }),
     []
   );
-  
+
   return (
     <AuthContext.Provider value={authContext}>
       <NavigationContainer>
         <Stack.Navigator>
           {state.isLoading ? (
-            <Stack.Screen name="Splash" component={Splash} />
+            <Stack.Screen name="Splash" component={Splash} options={{
+              header: () => {}
+            }} />
           ) :
             state.userToken == null ? (
-              <Stack.Screen name="Onboarding" component={Onboarding} />
+              <Stack.Screen name="Onboarding" component={Onboarding} options={{
+                header: () => {}
+              }} />
             ) : (
               <>
                 <Stack.Screen name="Home" component={Home} />
@@ -95,12 +98,3 @@ export default function App() {
     </AuthContext.Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
