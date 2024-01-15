@@ -14,29 +14,6 @@ export function AuthTopBar() {
     );
 }
 
-export function HomeBanner() {
-    return (
-        <View style={{ width: '100%', height: '40%', backgroundColor: '#495e57', padding: 15 }}>
-            <Text style={[commonStyles.secondaryColor, { fontSize: 30 }]}>Little Lemon</Text>
-            <Text style={{ color: 'white', fontSize: 20 }}>Chicago</Text>
-            <View style={[commonStyles.row, { flex: 1 }]}>
-                <View style={{ flex: 0.6, justifyContent: 'center' }}>
-
-                    <Text style={{ color: 'white', fontSize: 15 }}>We are a family owned Mediterrianean restaurant, focused on traditional recipes served with a modern twist.</Text>
-                </View>
-                <View style={{ flex: 0.4, alignItems: 'flex-end' }}>
-                    <Image source={require('../img/banner_image.png')} style={{ width: 130, height: 150, borderRadius: 10 }} />
-                </View>
-            </View>
-            <View style={[commonStyles.circleBorder, { backgroundColor: 'white' }]}>
-                <Pressable>
-                    <AntDesign name="search1" size={25} color="black" />
-                </Pressable>
-            </View>
-        </View>
-    );
-}
-
 export function ProductItem(item) {
     return (
         <View style={{ width: '100%' }}>

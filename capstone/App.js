@@ -6,6 +6,7 @@ import { Profile } from './screens/Profile';
 import React from 'react';
 import { delay, getData, storeData, tokenGenerator } from './helper/storage_helper';
 import Splash from './screens/Splash';
+import { Search } from './screens/Search';
 
 const Stack = createNativeStackNavigator();
 
@@ -91,6 +92,7 @@ export default function App() {
               <>
                 <Stack.Screen name="Home" component={Home} />
                 <Stack.Screen name="Profile" component={Profile} />
+                <Stack.Screen name='Search' component={Search} />
               </>
             )}
         </Stack.Navigator>
