@@ -2,8 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { FlatList, Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { LogoImage, ProductItem } from "../components/ui_components";
 import { commonStyles } from "../components/form_components";
-import { createTable, filterByCategory, filterByQuery, filterByQueryAndCategories, getLocalData, saveDataToLocal } from "../helper/database";
-import { AntDesign } from '@expo/vector-icons';
+import { createTable, filterByCategory, filterByQuery, getLocalData, saveDataToLocal } from "../helper/database";
 import debounce from "lodash.debounce";
 import { Searchbar } from "react-native-paper";
 

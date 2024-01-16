@@ -54,7 +54,7 @@ export default function Onboarding({ navigation }) {
                     let hasError = checkValidation();
                     if (!hasError.trim()) {
                         try {
-                            var loggedInUser = { firstName: firstName, lastName: lastName, email: email, phone: phoneNumber, password: password };
+                            var loggedInUser = { firstName: firstName, lastName: lastName, email: email, phone: phoneNumber, password: password, isOrderStatusChecked:true,isPasswordChange:true,isSpecialOffer:true,isNewsLetter:true };
                             await storeData("loggedInUser", JSON.stringify(loggedInUser));
                             Alert.alert("User account created successfully!");
                             signIn(email, password);

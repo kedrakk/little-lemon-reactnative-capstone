@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Image, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { Alert, Image, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { AuthContext } from "../App";
-import { clearAllForLogout, getData } from "../helper/storage_helper";
+import { clearAllForLogout, getData, storeData } from "../helper/storage_helper";
 import { LogoImage } from "../components/ui_components";
 import { commonStyles } from "../components/form_components";
 import Checkbox from 'expo-checkbox';
@@ -20,29 +20,38 @@ export function Profile({ navigation }) {
         });
     }, [navigation]);
 
-    const [userData, setUserData] = useState({});
+    const [firstName, onFirstNameChanged] = React.useState('');
+    const [lastName, onLastNameChanged] = React.useState('');
+    const [email, onEmailChanged] = React.useState('');
+    const [phoneNumber, onPhoneChanged] = React.useState('');
+    const [password, onPasswordChanged] = React.useState('');
+
+    const [isOrderStatusChecked, setOrderStatus] = useState(false);
+    const [isPasswordChange, setPasswordChange] = useState(false);
+    const [isSpecialOffer, setSpecialOrder] = useState(false);
+    const [isNewsLetter, setNewLetters] = useState(false);
+
     useEffect(() => {
         (
             async () => {
                 try {
                     const data = await getData("loggedInUser");
                     var decodedData = JSON.parse(data);
-                    setUserData(decodedData);
+                    onFirstNameChanged(decodedData.firstName)
+                    onLastNameChanged(decodedData.lastName);
+                    onEmailChanged(decodedData.email);
+                    onPhoneChanged(decodedData.phone);
+                    onPasswordChanged(decodedData.password);
+                    setOrderStatus(decodedData.isOrderStatusChecked);
+                    setPasswordChange(decodedData.isPasswordChange);
+                    setSpecialOrder(decodedData.isSpecialOffer);
+                    setNewLetters(decodedData.isNewsLetter);
                 } catch (error) {
                     alert(error);
                 }
             }
         )();
     }, []);
-    const [firstName, onFirstNameChanged] = React.useState('');
-    const [lastName, onLastNameChanged] = React.useState('');
-    const [email, onEmailChanged] = React.useState('');
-    const [phoneNumber, onPhoneChanged] = React.useState('');
-
-    const [isOrderStatusChecked, setOrderStatus] = useState(true);
-    const [isPasswordChange, setPasswordChange] = useState(true);
-    const [isSpecialOffer, setSpecialOrder] = useState(true);
-    const [isNewsLetter, setNewLetters] = useState(true);
 
     return (
         <ScrollView>
@@ -53,12 +62,16 @@ export function Profile({ navigation }) {
                     <View style={commonStyles.row}>
                         <Image source={require("../img/profile.png")} style={{ width: 70, height: 70 }} />
                         <View style={styles.rowParent}>
-                            <Pressable style={[commonStyles.buttonStyle, styles.changeButtonStyle]}>
+                            <Pressable style={[commonStyles.buttonStyle, styles.changeButtonStyle]} onPress={()=>{
+                                Alert.alert("Coming Soon");
+                            }}>
                                 <Text style={{ color: 'white' }}>Change</Text>
                             </Pressable>
                         </View>
                         <View style={styles.rowParent}>
-                            <Pressable style={[commonStyles.buttonStyle, styles.removeButtonStyle]}>
+                            <Pressable style={[commonStyles.buttonStyle, styles.removeButtonStyle]} onPress={()=>{
+                                Alert.alert("Coming Soon");
+                            }}>
                                 <Text style={{ color: '#495e57' }}>Remove</Text>
                             </Pressable>
                         </View>
@@ -91,19 +104,19 @@ export function Profile({ navigation }) {
                 <View style={{ marginBottom: 8 }}>
                     <Text style={{ fontSize: 16, marginBottom: 10 }}>Email Notifications</Text>
                     <View style={[commonStyles.row, styles.checkBoxWrapper]}>
-                        <Checkbox value={isOrderStatusChecked} onChange={setOrderStatus} style={commonStyles.checkbox} color={isOrderStatusChecked ? '#495e57' : undefined} />
+                        <Checkbox value={isOrderStatusChecked} onValueChange={setOrderStatus} style={commonStyles.checkbox} color={isOrderStatusChecked ? '#495e57' : undefined} />
                         <Text>Order Status</Text>
                     </View>
                     <View style={[commonStyles.row, styles.checkBoxWrapper]}>
-                        <Checkbox value={isPasswordChange} onChange={setPasswordChange} style={commonStyles.checkbox} color={isPasswordChange ? '#495e57' : undefined} />
+                        <Checkbox value={isPasswordChange} onValueChange={setPasswordChange} style={commonStyles.checkbox} color={isPasswordChange ? '#495e57' : undefined} />
                         <Text>Password Changes</Text>
                     </View>
                     <View style={[commonStyles.row, styles.checkBoxWrapper]}>
-                        <Checkbox value={isSpecialOffer} onChange={setSpecialOrder} style={commonStyles.checkbox} color={isSpecialOffer ? '#495e57' : undefined} />
+                        <Checkbox value={isSpecialOffer} onValueChange={setSpecialOrder} style={commonStyles.checkbox} color={isSpecialOffer ? '#495e57' : undefined} />
                         <Text>Special Offers</Text>
                     </View>
                     <View style={[commonStyles.row, styles.checkBoxWrapper]}>
-                        <Checkbox value={isNewsLetter} onChange={setNewLetters} style={commonStyles.checkbox} color={isNewsLetter ? '#495e57' : undefined} />
+                        <Checkbox value={isNewsLetter} onValueChange={setNewLetters} style={commonStyles.checkbox} color={isNewsLetter ? '#495e57' : undefined} />
                         <Text>Newletter</Text>
                     </View>
                 </View>
@@ -114,10 +127,17 @@ export function Profile({ navigation }) {
                     <Text>Logout</Text>
                 </Pressable>
                 <View style={[commonStyles.row, { marginVertical: 15, flex: 1, justifyContent: 'space-between', marginHorizontal: 10 }]}>
-                    <Pressable style={[commonStyles.buttonStyle, styles.removeButtonStyle, { width: '45%', justifyContent: 'center', alignItems: 'center' }]}>
+                    <Pressable style={[commonStyles.buttonStyle, styles.removeButtonStyle, { width: '45%', justifyContent: 'center', alignItems: 'center' }]} onPress={()=>{
+                        navigation.goBack();
+                    }}>
                         <Text style={{ color: '#495e57' }}>Discard Changes</Text>
                     </Pressable>
-                    <Pressable style={[commonStyles.buttonStyle, styles.changeButtonStyle, { width: '45%', justifyContent: 'center', alignItems: 'center' }]}>
+                    <Pressable style={[commonStyles.buttonStyle, styles.changeButtonStyle, { width: '45%', justifyContent: 'center', alignItems: 'center' }]} onPress={async()=>{
+                        var updatedUser = { firstName: firstName, lastName: lastName, email: email, phone: phoneNumber, password: password, isOrderStatusChecked:isOrderStatusChecked,isPasswordChange:isPasswordChange,isSpecialOffer:isSpecialOffer,isNewsLetter:isNewsLetter };
+                        await storeData('loggedInUser',JSON.stringify(updatedUser));
+                        Alert.alert("User Updated Successfully");
+                        navigation.goBack();
+                    }}>
                         <Text style={{ color: 'white' }}>Save Changes</Text>
                     </Pressable>
                 </View>
